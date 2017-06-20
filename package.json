@@ -1,0 +1,57 @@
+{
+  "name": "redux-auth-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "client": "webpack-dev-server",
+    "start": "node index.js"
+  },
+  "repository": "git+https://github.com/hcjk/redux-auth-example.git",
+  "keywords": [],
+  "author": "Henry Kaufman <henry@kaufman.io> (http://kaufman.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hcjk/redux-auth-example/issues"
+  },
+  "homepage": "https://github.com/hcjk/redux-auth-example#readme",
+  "devDependencies": {
+    "ava": "0.19.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-react-transform": "1.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-node": "4.2.2",
+    "eslint-plugin-react": "6.10.3",
+    "html-webpack-plugin": "^2.28.0",
+    "path": "0.12.7",
+    "webpack-dev-server": "2.4.2"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "express": "4.15.2",
+    "history": "^4.6.1",
+    "prop-types": "^15.5.8",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
+    "react-redux": "5.0.4",
+    "react-router": "3.0.0",
+    "react-router-redux": "^4.0.8",
+    "rebass": "^0.3.4",
+    "redux": "3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-thunk": "^2.2.0",
+    "reflexbox": "^2.2.3",
+    "styled-components": "^1.4.5",
+    "webpack": "2.4.1",
+    "webpack-dev-middleware": "1.10.1",
+    "webpack-hot-middleware": "2.18.0"
+  }
+}
