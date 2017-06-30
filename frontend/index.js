@@ -1,32 +1,30 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { syncHistoryWithStore } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
-import styled from 'styled-components';
+import { Router, hashHistory } from 'react-router';
+import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 
-import configureStore from './redux/configureStore';
 import routes from './routes';
+import rootReducer from './reducers';
+import IndexSagas from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const configureStore = () => createStore(
+  rootReducer,
+  compose(applyMiddleware(sagaMiddleware, logger))
+);
 
 const store = configureStore();
 
-const history = syncHistoryWithStore(createHistory(), store);
+sagaMiddleware.run(IndexSagas);
 
-const Root = styled.div`
-  font: 87.5%/1.6rem -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
-  margin: 0;
-  color: #111;
-  background-color: #fff;
-`;
-
-render(
-  <Root>
-    <Provider store={store}>
-      <Router history={history}>
-        {routes(store)}
-      </Router>
-    </Provider>
-  </Root>,
-  document.getElementById('root')
-);
+render((
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      {routes}
+    </Router>
+  </Provider>
+), document.getElementById('root'));
