@@ -1,34 +1,32 @@
 import React from 'react';
-import { Router, Route, hashHistory } from 'react-router';
-
-import { isAuthenticated } from './redux/modules/auth';
+import { Router, Route } from 'react-router';
 
 import App from './containers/App';
-import Posts from './containers/Posts';
+import Authenticated from './containers/Authenticated';
 import Login from './containers/Login';
 import NotFound from './containers/NotFound';
 
 import NavBar from './containers/NavBar';
 
-const checkAuth = (state, replace, callback) => {
-  if (!state.auth || !state.auth.user) return replace('/login');
+import { TOKEN_NAME } from './constants/auth';
+
+const checkAuth = (nextState, replace, callback) => {
+  const token = localStorage.getItem(TOKEN_NAME);
+  const nextLoc = nextState.location.pathname;
+
+  if (!token && nextLoc !== '/login' && nextLoc !== '/signup') replace('/login');
+  if (token && (nextLoc === '/login' || nextLoc === '/signup' || nextLoc === '/')) replace('/authenticated');
   return callback();
 };
 
-export default function (store) {
-  return (
-    <div>
-      <NavBar user={isAuthenticated(store.getState())} />
-      <Router history={hashHistory}>
-        <Route path="/" exact component={App} />
-        <Route path="/login" exact component={Login} />
-        <Route
-          onEnter={(state, replace, callback) => checkAuth(store.getState(), replace, callback)}
-          path="/posts"
-          component={Posts}
-        />
-        <Route component={NotFound} />
-      </Router>
-    </div>
-  );
-}
+const routes = (
+  <div>
+    <Route path="/" onEnter={checkAuth} component={App}>
+      <Route path="authenticated" component={Authenticated} />
+    </Route>
+    <Route path="/login" exact component={Login} />
+    <Route component={NotFound} />
+  </div>
+);
+
+export default routes;
