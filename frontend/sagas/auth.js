@@ -13,7 +13,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  TOKEN_NAME
 } from '../constants/auth';
 
 import {
@@ -43,10 +44,10 @@ function* signupFlow(action) {
 function updateToken(token) {
   if (token) {
     console.info('Saving a token...');
-    localStorage.setItem('sponta-web-token', token);
+    localStorage.setItem(TOKEN_NAME, token);
   } else {
     console.info('Removing a token...');
-    localStorage.removeItem('sponta-web-token');
+    localStorage.removeItem(TOKEN_NAME);
   }
 }
 

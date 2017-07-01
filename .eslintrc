@@ -9,6 +9,7 @@
   "globals": {
     "document": true,
     "window": true,
-    "localStorage": true
+    "localStorage": true,
+    "fetch": true
   }
 }
