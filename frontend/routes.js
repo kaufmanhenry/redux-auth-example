@@ -1,12 +1,10 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
+import { Route } from 'react-router';
 
 import App from './containers/App';
 import Authenticated from './containers/Authenticated';
 import Login from './containers/Login';
 import NotFound from './containers/NotFound';
-
-import NavBar from './containers/NavBar';
 
 import { TOKEN_NAME } from './constants/auth';
 

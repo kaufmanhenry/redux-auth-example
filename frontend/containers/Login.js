@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Heading, Input, Button, Card, Message } from 'rebass';
+import { Container, Heading, Input, Button, Card } from 'rebass';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { loginRequest } from '../actions/auth';
 
 class Login extends Container {
@@ -21,7 +20,6 @@ class Login extends Container {
   }
 
   render() {
-    const { auth } = this.props;
     return (
       <Container py={3}>
         <Card rounded width={256} p={2}>
