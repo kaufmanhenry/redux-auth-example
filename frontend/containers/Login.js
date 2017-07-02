@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Heading, Input, Button, Card } from 'rebass';
 import { connect } from 'react-redux';
 import { loginRequest } from '../actions/auth';
 
-class Login extends Container {
+class Login extends Component {
+  static propTypes = {
+    loginRequest: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props);
 
-    this.login = this.login.bind(this);
+    this.loginSubmit = this.loginSubmit.bind(this);
   }
 
-  login(e) {
+  loginSubmit(e) {
     e.preventDefault();
     this.props.loginRequest({
       username: e.target.username.value,
@@ -24,7 +28,7 @@ class Login extends Container {
       <Container py={3}>
         <Card rounded width={256} p={2}>
           <Heading level={2} size={3} pb={1}>Login</Heading>
-          <form onSubmit={this.login}>
+          <form onSubmit={this.loginSubmit}>
             <Input
               label="Username"
               name="username"
@@ -46,12 +50,5 @@ class Login extends Container {
     );
   }
 }
-
-Login.propTypes = {
-  loginRequest: PropTypes.func.isRequired,
-  auth: PropTypes.shape({
-    error: PropTypes.shape()
-  }).isRequired
-};
 
 export default connect(({ auth }) => ({ auth }), { loginRequest })(Login);

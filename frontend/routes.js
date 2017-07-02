@@ -23,7 +23,7 @@ const routes = (
       <Route path="authenticated" component={Authenticated} />
     </Route>
     <Route path="/login" exact component={Login} />
-    <Route component={NotFound} />
+    <Route path="*" component={NotFound} />
   </div>
 );
 

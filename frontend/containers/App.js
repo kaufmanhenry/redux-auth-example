@@ -8,7 +8,7 @@ import { logoutRequest } from '../actions/auth';
 
 const App = props => (
   <div>
-    <Navbar logout={props.logoutRequest} user={props.auth.user} />
+    <Navbar logout={props.logoutRequest} user={props.auth.token} />
     {props.children}
   </div>
 );
@@ -16,9 +16,9 @@ const App = props => (
 App.propTypes = {
   logoutRequest: PropTypes.func.isRequired,
   auth: PropTypes.shape({
-    user: PropTypes.object.isRequired
+    token: PropTypes.string.isRequired
   }).isRequired,
   children: PropTypes.node.isRequired
 };
 
-export default connect(({ user }) => ({ user }), { logoutRequest })(App);
+export default connect(({ auth }) => ({ auth }), { logoutRequest })(App);

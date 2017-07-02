@@ -2,7 +2,7 @@ import { hashHistory } from 'react-router';
 import { TOKEN_NAME } from '../constants/auth';
 
 // The API url that will be requested to authenticate
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3000/api/';
 
 const defaultHeaders = {
   Accept: 'application/json, text/plain, */*',

@@ -8,7 +8,8 @@ module.exports = (app, callback) => {
     if (username === 'test' && password === 'test') {
       return res.send({
         status: 200,
-        message: 'Successfully authenticated'
+        message: 'Successfully authenticated',
+        token: 'this-is-a-super-fake-token'
       });
     }
 

@@ -54,16 +54,16 @@ function updateToken(token) {
 function* loginFlow(action) {
   try {
     const {
-      email,
+      username,
       password
     } = action;
-    const response = yield call(login, email, password);
+    const response = yield call(login, username, password);
     yield put({
       type: LOGIN_SUCCESS,
       response
     });
-    yield call(updateToken, response.data.token);
-    hashHistory.push('/app');
+    yield call(updateToken, response.token);
+    hashHistory.push('/authenticated');
   } catch (error) {
     yield put({
       type: LOGIN_FAILURE,

@@ -1,9 +1,12 @@
+require('babel-polyfill');
+
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config');
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // Setup express
 const app = express();
@@ -16,6 +19,9 @@ app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
 app.use(webpackHotMiddleware(compiler));
+
+// body-parser config
+app.use(bodyParser.json());
 
 // Require the API
 require('./backend/index')(app, (err, router) => {
